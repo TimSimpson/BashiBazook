@@ -12,7 +12,7 @@ When Bashi finds lines that begin like the following:
     function cmd_build() {
 ```
 
-it records them and creates a bit of multiplexing code like this:
+it records them and creates some dispatch code like this:
 
 ```bash
 
