@@ -138,7 +138,7 @@ function bashi_run() {
 
     case "$1" in
         "help" ) shift; bashi_called_help=true; bashi_help $@;;
-        "debug" ) shift; set -o xtrace; bashi_command $@;;
+        "debug" ) shift; set -o xtrace; bashi_run $@;;
         """)
 
         for func in self._funcs:
