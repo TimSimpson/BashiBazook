@@ -143,7 +143,7 @@ function bashi_run() {
 
         for func in self._funcs:
             safe_docs = func.docs.replace("'", "'\"'\"'")
-            print("        '%s' ) %s ;;" % (func.name, func.command))
+            print("        '%s' ) shift; %s $@;;" % (func.name, func.command))
 
         print("""
 
