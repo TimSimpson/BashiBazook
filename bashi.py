@@ -107,7 +107,10 @@ ${bashi_help_preamble} :
         for func in self._funcs:
             pad = ' ' * (command_length - len(func.name))
             if func.summary:
-                safe_summary = " - " + func.summary.replace("'", "'\"'\"'")
+                safe_summary = (" - "
+                    + func.summary.replace("\\", "\\\\")
+                    .replace("\"", "\"'\"'\""))
+                    #.replace("'", "'"))
             else:
                 safe_summary = ""
             print('    %s%s %s' % (func.name, pad, safe_summary))
