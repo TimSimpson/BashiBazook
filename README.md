@@ -41,19 +41,16 @@ and see help using the built in "help" command:
     First, make sure that blah blah blah...
 ```
 
+You can easily write all of the code to make a menu, call different functions, show help etc in Bash yourself. I know because I've done so many times. Bashi is an attempt to simplify that. I consider it a quasi-alternative to tools such as [ok-bash](http://www.secretgeek.net/ok) and [frontdoor](https://github.com/TimSimpson/frontdoor).
+
+
 ## How it works
 
-There's three ways of doing this.
-
-The first involves calling "bashi_bazook.`sh", passing it` the name of your script, and then any arguments you want sent after that. Of course at this point someone might say "that's not really bash!" and gee, that could really ruin your day.
-
-The second involves having your script source "`bashi_bazook.sh`" which lets it get called normally (though you need to make `bashi_bazook.sh` generally available or vednor `bashi_bazook.sh` and bazookp.py into your repo).
-
-The third involves the old bashi.py script. I don't know why I'm even documenting it except I'm too lazy to delete the text for it right now.
+There's three ways of using Bashi Bazook.
 
 ### `bashi_bazook.sh` - call it directly
 
-This is fall off a log easy. Just download `bashi_bazook.sh` and it's partner `bazookp.py`, stick them in the same directory somewhere, then call `bashi_bazook.sh` and pass your script as an argument.
+Download `bashi_bazook.sh` and its partner `bazook.py` and stick them in the same directory somewhere. Then pass the name of your script and any arguments you want sent to said script.
 
 For example:
 
@@ -61,26 +58,25 @@ For example:
 ? ./bashi_bazook.sh example.sh build
 ```
 
+Of course at this point someone might say "that's not really bash!" and gee, that could really ruin your day.
+
 ### `bashi_bazook.sh` - source it
 
-This way is almost as simple. In your bash script, just source `bashi_bazook.sh` like so:
+This way is almost as simple. Again, download `bashi_bazook.sh` and `bazook.py`into the same directory. Then in your bash script, just source `bashi_bazook.sh` like so:
 
 
 ```bash
     source bashi_bazook.sh "${BASH_SOURCE[0]}" "${@}"
 ```
 
-Then call it:
+Then call it like it was a normal bash script:
 
 ```bash
     ? ./example.sh build
 ```
+### invoke `bashi.py` then source the generated bash script
 
-##
-
-### bashi.py
-
-If you want to use the old method, read on. It involves vendoring only one dependency but requires temporary files.
+This method involves vendoring only one file but it also creates a temporary file.
 
 First, make bashi.py available.
 In your own script, you add the following:
