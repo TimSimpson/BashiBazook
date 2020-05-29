@@ -4,12 +4,6 @@ Bashi Bazook Python Helper
 
 This reads a bash file as argument 1 containing functions beginning with
 "cmd_" and returns information on it.
-
-License
--------
-
-MIT
-
 """
 import sys
 

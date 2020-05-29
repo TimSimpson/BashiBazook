@@ -21,15 +21,21 @@ readonly bazook_script_arg="${1}"
 
 shift 1;
 
-# Change this in a script to show something else
-bashi_base_command="${bashi_base_command:-'${bazook_name}' '${bazook_script_arg}'}"
 
+# Figure out if we need to source the argument script or if it is sourcing us.
+read bazook_caller_line bazook_caller_sub bazook_caller_file < <(caller 0)
+
+# Source the script, unless it sourced us.
+if [ "${bazook_caller_file}" != "${bazook_script_arg}" ]; then
+    source "${bazook_script_arg}"
+    bashi_base_command="${bashi_base_command:-'${bazook_name}' '${bazook_script_arg}'}"
+else
+    bashi_base_command="${bashi_base_command:-'${bazook_script_arg}'}"
+fi
 
 # Override this to show custom help stuff.
 bazook_help_preamble="${bazook_help_preamble:-Commands :}"
 
-
-source "${bazook_script_arg}"
 
 function bazookp(){
     python "${bazook_python_helper}" "${bazook_script_arg}" "${@}"
